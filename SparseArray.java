@@ -18,6 +18,62 @@ public class SparseArray<E> {
         public void setPrev(Node<E> p) { prev = p; }
         public void setNext(Node<E> n) { Next = n; }
     }
-    
+    private Node<E> head ;
+    private Node<E> tail ;
+    private int size;
+
+    public SparseArray(int size){
+        this.size=size;
+        head=new Node<>(null,null,null,-1);
+        tail=new Node<>(null,head,null,size+1);
+        head.setNext(tail);
+    }
+    private void addBetween(Integer e, Node<E> predecessor, Node<E> successor,int index) {
+        Node<E> newest = new Node<>(e, predecessor, successor,index);
+        predecessor.setNext(newest);
+        successor.setPrev(newest);
+    }
+    private Node<E> SearchByIndex(int index) {
+        Node<E> temp = head;
+        while (temp.Next != null) {
+            if (temp.getIndex() == index) {
+                return temp;
+            } else {
+                temp = temp.Next;
+            }
+        }
+        //if not found return null
+        return null;
+    }
+    //bubble sort
+    private Node<E> Sort(Node<E> header){
+        int swapped;
+        Node<E> ptr1;
+        Node<E> lptr = null;
+        // Checking for empty list
+        if (header == null)
+            return null;
+        do {
+            swapped = 0;
+            ptr1 = header;
+
+            while (ptr1.Next != lptr) {
+                if (ptr1.index > ptr1.Next.index) {
+                    int t = ptr1.index;
+                    Integer te = ptr1.Element;
+                    ptr1.index = ptr1.Next.index;
+                    ptr1.Element = ptr1.Next.Element;
+                    ptr1.Next.index = t;
+                    ptr1.Next.Element = te;
+                    swapped = 1;
+                }
+                ptr1 = ptr1.Next;
+            }
+            lptr = ptr1;
+        }
+        while (swapped != 0);
+        return header;
+    }
+
 
 }
