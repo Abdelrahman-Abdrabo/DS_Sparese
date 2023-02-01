@@ -90,5 +90,19 @@ public class SparseArray<E> {
         }
         head=Sort(head);
     }
-
+    //print values with zeros
+    public void printAll(){
+        head= Sort(head);
+        Node<E> temp =head.getNext();
+        for(int i =0 ; i<size;i++){
+            if(temp.getIndex()==i){
+                System.out.print(" "+temp.getElement()+" ");
+                temp=temp.Next;
+            }else {
+                System.out.print(" 0 ");
+            }
+        }
+        System.out.println();
+    }
+    
 }
