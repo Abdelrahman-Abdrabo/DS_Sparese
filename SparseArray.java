@@ -113,4 +113,27 @@ public class SparseArray<E> {
             temp=temp.Next;
         }
     }
+    //add two sparse array (sparseArray other)
+    public void add(SparseArray<E> other){
+        if(other==null||other.size!= this.size|| other.size==0 ){
+            System.out.println("can't add this array because the size of this array not equal to other array");
+            return;
+        }
+        other.head=Sort(other.head);
+        head=Sort(head);
+        Node<E> otherTemp =other.head.getNext();
+        Node<E> temp =this.head.getNext();
+        Node<E> search ;
+        while(otherTemp.Next!= null){
+            search=this.SearchByIndex(otherTemp.index);
+            if(search==null){
+                addBetween(otherTemp.Element,this.head,this.head.getNext(), otherTemp.index);
+                this.head=Sort(this.head);
+            }else{
+                temp=this.SearchByIndex(otherTemp.index);
+                temp.Element= temp.Element+otherTemp.Element;
+            }
+            otherTemp=otherTemp.Next;
+        }
+    }
 }
