@@ -74,6 +74,21 @@ public class SparseArray<E> {
         while (swapped != 0);
         return header;
     }
+    //----------------------------------------required methods -------------------------------------------------//
 
+    //Set value (Integer x , int index)
+    public void setValue(Integer value ,int index){
+        if(index>=this.size||index<0){
+            System.out.println("Value "+value+" not added because the index is not valid");
+            return;
+        }
+        Node<E> temp =SearchByIndex(index);
+        if (temp!= null){
+            temp.Element=value;
+        }else{
+            addBetween(value,head,head.getNext(),index);
+        }
+        head=Sort(head);
+    }
 
 }
