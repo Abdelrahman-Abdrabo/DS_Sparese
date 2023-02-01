@@ -104,5 +104,13 @@ public class SparseArray<E> {
         }
         System.out.println();
     }
-    
+    //print actual values only without zeros
+    public void printAllNoneZeros(){
+        head=Sort(head);
+        Node<E> temp = head.getNext();
+        while(temp.getNext()!= null){
+            System.out.println(" "+temp.getElement()+" ");
+            temp=temp.Next;
+        }
+    }
 }
