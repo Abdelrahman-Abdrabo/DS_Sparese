@@ -92,6 +92,19 @@ public class SparseMatrix {
             this.index = index;
         }
     }
+    // let's create a row node first and add col node to it
+    private RowNode<E> head;            //head of the row
+    private RowNode<E> tail;            // tail of the row
+    private int VirtualROWS;            // stores the virtual Rows number
+    private int VirtualCOlS;           //stores the virtual columns number
+
+    public SparseMatrix(int Rows, int Columns) {
+        this.VirtualROWS = Rows;
+        this.VirtualCOlS = Columns;
+        head = new RowNode<>(null, null, null, -1);
+        tail = new RowNode<>(null, head, null, Rows + 1);
+        head.setNext(tail);
+    }
 
 
 }
